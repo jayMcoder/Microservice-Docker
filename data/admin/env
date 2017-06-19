@@ -1,0 +1,5 @@
+MONGO_USER_ADMIN=adminMongodb
+MONGO_PASS_ADMIN=adminMongodb2017
+
+MONGO_REPLICA_ADMIN=replicaAdmin
+MONGO_PASS_REPLICA=replicaMongodb2017
