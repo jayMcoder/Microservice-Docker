@@ -2,7 +2,7 @@
   "name": "microservice-docker",
   "version": "0.0.1",
   "description": "Sample microservice docker project",
-  "main": "index.js",
+  "main": "echo microservices",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -24,5 +24,11 @@
   "bugs": {
     "url": "https://github.com/jayMcoder/Microservice-Docker/issues"
   },
-  "homepage": "https://github.com/jayMcoder/Microservice-Docker#readme"
+  "homepage": "https://github.com/jayMcoder/Microservice-Docker#readme",
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "eslint": "^4.0.0",
+    "eslint-config-airbnb-base": "^11.2.0",
+    "eslint-plugin-import": "^2.3.0"
+  }
 }

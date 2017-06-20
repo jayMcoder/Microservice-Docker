@@ -14,6 +14,26 @@ function check_status {
   docker exec -i $2 bash -c "$cmd"
 }
 
+# @params master-server master-container
+function load_user_and_mock_data {
+  echoUtil "----> Add User and Mock data -- $1 $2"
+  # @params master-server
+  switchToServer $1
+  # create the folder necessary for the container
+  # @params master-container
+  docker exec -i $2 bash -c 'mkdir /data/movies-service'
+  # Copy files
+  docker cp ./movies-service/src/config/user.js $2:/data/movies-service/
+  docker cp ./movies-service/src/config/mockdb.js $2:/data/movies-service/
+  # @params master-container
+  docker exec -i $2 bash -c 'mongo < /data/movies-service/user.js'
+  sleep 2
+  # @params container
+  docker exec -i $2 bash -c 'mongo < /data/movies-service/mockdb.js'
+  sleep 3
+  echoUtil "----> Completed User and Mock data -- $1 $2"
+}
+
 # @params master-server master-container replica-server
 function add_replica {
   echoUtil "----> Add Replica -- $1 $2 $3"
@@ -261,6 +281,8 @@ function main {
   add_replica master1 mongoNode1 worker11
   # @params master-server master-container replica-server
   add_replica master1 mongoNode1 worker12
+  # @params master-server
+  load_user_and_mock_data master1 mongoNode1
   # @params server container
   check_status master1 mongoNode1
 }

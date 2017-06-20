@@ -3,5 +3,5 @@ rs.initiate({
   members: [{
     _id: 0,
     host: 'master1:27017'
-    }]
-})
+  }]
+});
